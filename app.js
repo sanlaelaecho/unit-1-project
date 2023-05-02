@@ -3,13 +3,14 @@ CACHED DOM NODES
 ========================= */
 
 const body = document.querySelector("body")
-const modal = document.querySelector(".modal")
+
 const carousel = document.querySelector(".carousel")
-const getStarted = document.querySelector(".get-started")
 const carouselImg = document.querySelector(".carousel img")
 const next = document.querySelector(".carousel .next")
 const previous = document.querySelector(".carousel .previous")
 const select = document.querySelector(".carousel .select")
+const modal = document.querySelector(".modal-game-over")
+const playAgain = document.querySelector(".play-again")
 
 /* ======================
 CREATE Avatar
@@ -29,10 +30,10 @@ class Avatar {
 
 class Naruto extends Avatar {
     this.image = {
-        narutoSolo: "https://p7.hiclipart.com/preview/171/107/717/naruto-ultimate-ninja-3-naruto-shippuden-ultimate-ninja-storm-2-naruto-shippuden-ultimate-ninja-storm-generations-naruto-ultimate-ninja-storm-naruto-uzumaki-naruto-png-picture-thumbnail.jpg",
-        narutoClone: "https://www.vhv.rs/dpng/d/406-4069972_naruto-png-image-file-naruto-doing-shadow-clone.png",
-        narutoRasengan: "https://p7.hiclipart.com/preview/462/369/315/5bbc3c2eef4d5-thumbnail.jpg",
-        naruto9Tail: "https://e7.pngegg.com/pngimages/766/820/png-clipart-naruto-uzumaki-nine-tailed-fox-kurama-tailed-beasts-naruto-giraffe-cartoon.png",
+        narutoImgSolo: "https://p7.hiclipart.com/preview/171/107/717/naruto-ultimate-ninja-3-naruto-shippuden-ultimate-ninja-storm-2-naruto-shippuden-ultimate-ninja-storm-generations-naruto-ultimate-ninja-storm-naruto-uzumaki-naruto-png-picture-thumbnail.jpg",
+        narutoImgClone: "https://www.vhv.rs/dpng/d/406-4069972_naruto-png-image-file-naruto-doing-shadow-clone.png",
+        narutoImgRasengan: "https://p7.hiclipart.com/preview/462/369/315/5bbc3c2eef4d5-thumbnail.jpg",
+        narutoImg9Tail: "https://e7.pngegg.com/pngimages/766/820/png-clipart-naruto-uzumaki-nine-tailed-fox-kurama-tailed-beasts-naruto-giraffe-cartoon.png",
     }
 
     startFight() {
@@ -55,10 +56,10 @@ class Naruto extends Avatar {
 
 class Sasuke extends Avatar {
     this.image = {
-        sasukeSolo: "https://e7.pngegg.com/pngimages/571/918/png-clipart-sasuke-uchiha-naruto-uzumaki-shikamaru-nara-naruto-shippuden-ultimate-ninja-storm-4-itachi-uchiha-naruto-purple-black-hair.png",
-        sasukeFire: "https://www.pngitem.com/pimgs/m/407-4072625_sasuke-shippuden-fire-ball-jutsu-hd-png-download.png",
-        sasukeChidori: "https://e7.pngegg.com/pngimages/425/854/png-clipart-sasuke-uchiha-itachi-uchiha-chidori-anime-anime-photography-computer-wallpaper.png",
-        sasukeSusanoo: "https://e7.pngegg.com/pngimages/1013/267/png-clipart-sasuke-uchiha-itachi-uchiha-naruto-uchiha-clan-susanoo-no-mikoto-skeleton-watching-tv.png",
+        sasukeImgSolo: "https://e7.pngegg.com/pngimages/571/918/png-clipart-sasuke-uchiha-naruto-uzumaki-shikamaru-nara-naruto-shippuden-ultimate-ninja-storm-4-itachi-uchiha-naruto-purple-black-hair.png",
+        sasukeImgFire: "https://www.pngitem.com/pimgs/m/407-4072625_sasuke-shippuden-fire-ball-jutsu-hd-png-download.png",
+        sasukeImgChidori: "https://e7.pngegg.com/pngimages/425/854/png-clipart-sasuke-uchiha-itachi-uchiha-chidori-anime-anime-photography-computer-wallpaper.png",
+        sasukeImgSusanoo: "https://e7.pngegg.com/pngimages/1013/267/png-clipart-sasuke-uchiha-itachi-uchiha-naruto-uchiha-clan-susanoo-no-mikoto-skeleton-watching-tv.png",
     }
 }
 
@@ -86,12 +87,21 @@ function changeBg(direction) {
         } else {
             currentBackground = 0
         }
-    } else {
-        currentBackground = backgroundImage.length - 1
+    } else if (direction === "previous") {
+        if (currentBackground > 0) {
+            currentBackground--
+        } else {
+            currentBackground = backgroundImage.length - 1
+        }
     }
-    carousel
+    carouselImg.setAttribute("src",backgroundImage[currentBackground])
 }
 
+function openCarousel() {
+    carousel.classList
+}
+
+function toggleModel() {modal.classList.toggle("open")}
 
 /* =============================
 EVENT LISTENERS
