@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Naruto vs Sasuke</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    
 </head>
 
 <body>
@@ -17,27 +17,29 @@
         Your browser does not support the audio element.
     </audio>
 
-
+    <!-- Constant Background Items -->
     <div>
-        <!-- Constant Background Items -->
-        <section id="home">
-            <img src="https://i.imgur.com/G9Jnqgq.png" alt="Naruto" />
-            <img src="https://i.imgur.com/92r3lJG.png" alt="vs" />
-            <img src="https://i.imgur.com/WtMofm8.png" alt="Sasuke" />
+        <section class="stats">
+            <div class="naruto-stats">
+                <img src="https://i.imgur.com/G9Jnqgq.png" alt="Naruto" />
+                <div class="naruto-health">Health: <span>100</span></div>
+                <div class="naruto-chakra">Chakra: <span>100</span></div>
+            </div>
+
+            <div><img src="https://i.imgur.com/92r3lJG.png" alt="vs" /></div>
+
+            <div class="sasuke-stats">
+                <img src="https://i.imgur.com/WtMofm8.png" alt="Sasuke" />
+                <div class="sasuke-health">Health: <span>100</span></div>
+                <div class="sasuke-chakra">Chakra: <span>100</span></div>
+            </div>
         </section>
-        <div class="naruto-stats">
-            <div class="naruto-health">Health: <span>100</span></div>
-            <div class="naruto-chakra">Chakra: <span>100</span></div>
-        </div>
-        <div class="sasuke-stats">
-            <div class="sasuke-health">Health: <span>100</span></div>
-            <div class="sasuke-chakra">Chakra: <span>100</span></div>
-        </div>
     </div>
+
 
     <!-- Choose Background Carousel -->
     <div class="carousel">
-        <h2>Pick your location to FIGHT!!</h2>
+        <h2>Pick your Location to FIGHT!!</h2>
         <button class="previous">Previous</button>
         <button class="next">Next</button>
         <img src="" alt="" />
@@ -67,6 +69,7 @@
         </div>
     </div>
 
+    <script src="app.js"></script>
 </body>
 
 </html>

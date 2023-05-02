@@ -9,6 +9,8 @@ window.onbeforeunload = function() {
     backgroundMusic.pause()
 }
 */
+
+console.log('it works!')
 /* ======================
 CACHED DOM NODES
 ========================= */
@@ -33,7 +35,7 @@ const sasukeSusanoo = document.querySelector(".sasuke-susanoo")
 const playAgain = document.querySelector(".play-again")
 
 /* ======================
-CREATE Avatar
+CREATE AVATARS
 ========================= */
 class Avatar {
     constructor(name, charHealth = 100, charChakra = 100) {
@@ -47,20 +49,47 @@ class Avatar {
             const damage = Math.floor(Math.random() * 10) + 1
             target.charHealth -= damage
             this.charChakra -= 5
+            this.updateStatsOnNarutoDOM()
+            target.updateStatsOnSasukeDOM()
         } else {
             body.innerHTML = `
                 <h3>Not enough Chakra! Wait to recover!</h3>
             `
         }
     }
+
+    updateStatsOnNarutoDOM() {
+        const container = document.querySelector(".naruto-stats")
+        container.innerHTML = `
+                <img src="https://i.imgur.com/G9Jnqgq.png" alt="Naruto" />
+                <div class="naruto-health">Health: <span>${this.charHealth}</span></div>
+                <div class="naruto-chakra">Chakra: <span>${this.charChakra}</span></div>
+                `
+    }
+    updateStatsOnSasukeDOM() {
+        const container = document.querySelector(".sasuke-stats")
+        container.innerHTML = `
+                <img src="https://i.imgur.com/WtMofm8.png" alt="Sasuke" />
+                <div class="sasuke-health">Health: <span>${this.charHealth}</span></div>
+                <div class="sasuke-chakra">Chakra: <span>${this.charChakra}</span></div>
+                `
+    }
 }
 
-class Naruto extends Avatar {
-    this.image = {
-    narutoImgSolo: "https://p7.hiclipart.com/preview/171/107/717/naruto-ultimate-ninja-3-naruto-shippuden-ultimate-ninja-storm-2-naruto-shippuden-ultimate-ninja-storm-generations-naruto-ultimate-ninja-storm-naruto-uzumaki-naruto-png-picture-thumbnail.jpg",
-    narutoImgClone: "https://www.vhv.rs/dpng/d/406-4069972_naruto-png-image-file-naruto-doing-shadow-clone.png",
-    narutoImgRasengan: "https://p7.hiclipart.com/preview/462/369/315/5bbc3c2eef4d5-thumbnail.jpg",
-    narutoImg9Tail: "https://e7.pngegg.com/pngimages/766/820/png-clipart-naruto-uzumaki-nine-tailed-fox-kurama-tailed-beasts-naruto-giraffe-cartoon.png",
+class narutoClass extends Avatar {
+    constructor() {
+        super()
+        this.image = {
+            narutoImgSolo: "https://p7.hiclipart.com/preview/171/107/717/naruto-ultimate-ninja-3-naruto-shippuden-ultimate-ninja-storm-2-naruto-shippuden-ultimate-ninja-storm-generations-naruto-ultimate-ninja-storm-naruto-uzumaki-naruto-png-picture-thumbnail.jpg",
+            narutoImgClone: "https://www.vhv.rs/dpng/d/406-4069972_naruto-png-image-file-naruto-doing-shadow-clone.png",
+            narutoImgRasengan: "https://p7.hiclipart.com/preview/462/369/315/5bbc3c2eef4d5-thumbnail.jpg",
+            narutoImg9Tail: "https://e7.pngegg.com/pngimages/766/820/png-clipart-naruto-uzumaki-nine-tailed-fox-kurama-tailed-beasts-naruto-giraffe-cartoon.png"
+        }
+    }
+    
+
+evolveNaruto () {
+    
 }
 
 clone(target) {
@@ -68,6 +97,7 @@ clone(target) {
         const damage = Math.floor(Math.random() * 6) + 10
         target.charHealth -= damage
         this.charChakra -= 10
+        updateStatsOnDOM()
     } else {
         body.innerHTML = `
                 <h3>Not enough Chakra! Wait to recover!</h3>
@@ -75,15 +105,12 @@ clone(target) {
     }
 }
 
-updateNaruto(jitsu) {
-    const container = document.
-    }
-
 rasengan(target) {
     if (this.charChakra >= 40) {
         const damage = Math.floor(Math.random() * 6) + 25
         target.charHealth -= damage
         this.charChakra -= 40
+        updateStatsOnDOM()
     } else {
         body.innerHTML = `
                 <h3>Not enough Chakra!</h3>
@@ -96,6 +123,7 @@ nineTails(target) {
         const damage = Math.floor(Math.random() * 11) + 40
         target.charHealth -= damage
         this.charChakra -= 70
+        updateStatsOnDOM()
     } else {
         body.innerHTML = `
                 <h3>Not enough Chakra! Can't transform!</h3>
@@ -103,13 +131,7 @@ nineTails(target) {
     }
 }
 
-updateStatsOnDOM() {
-    const container = document.querySelector(".naruto-stats")
-    container.innerHTML = `
-            <div class="naruto-health">Health: <span>${this.charHealth}</span></div>
-            <div class="naruto-chakra">Chakra: <span>${this.charChakra}</span></div>
-            `
-}
+
 
     /*
     recoverEveryRound() {
@@ -121,12 +143,15 @@ updateStatsOnDOM() {
     */
 }
 
-class Sasuke extends Avatar {
-    this.image = {
-    sasukeImgSolo: "https://e7.pngegg.com/pngimages/571/918/png-clipart-sasuke-uchiha-naruto-uzumaki-shikamaru-nara-naruto-shippuden-ultimate-ninja-storm-4-itachi-uchiha-naruto-purple-black-hair.png",
-    sasukeImgFire: "https://www.pngitem.com/pimgs/m/407-4072625_sasuke-shippuden-fire-ball-jutsu-hd-png-download.png",
-    sasukeImgChidori: "https://e7.pngegg.com/pngimages/425/854/png-clipart-sasuke-uchiha-itachi-uchiha-chidori-anime-anime-photography-computer-wallpaper.png",
-    sasukeImgSusanoo: "https://e7.pngegg.com/pngimages/1013/267/png-clipart-sasuke-uchiha-itachi-uchiha-naruto-uchiha-clan-susanoo-no-mikoto-skeleton-watching-tv.png",
+class sasukeClass extends Avatar {
+    constructor() {
+        super()
+        this.image = {
+            sasukeImgSolo: "https://e7.pngegg.com/pngimages/571/918/png-clipart-sasuke-uchiha-naruto-uzumaki-shikamaru-nara-naruto-shippuden-ultimate-ninja-storm-4-itachi-uchiha-naruto-purple-black-hair.png",
+            sasukeImgFire: "https://www.pngitem.com/pimgs/m/407-4072625_sasuke-shippuden-fire-ball-jutsu-hd-png-download.png",
+            sasukeImgChidori: "https://e7.pngegg.com/pngimages/425/854/png-clipart-sasuke-uchiha-itachi-uchiha-chidori-anime-anime-photography-computer-wallpaper.png",
+            sasukeImgSusanoo: "https://e7.pngegg.com/pngimages/1013/267/png-clipart-sasuke-uchiha-itachi-uchiha-naruto-uchiha-clan-susanoo-no-mikoto-skeleton-watching-tv.png"
+    } 
 }
 
 fireball(target) {
@@ -134,6 +159,7 @@ fireball(target) {
         const damage = Math.floor(Math.random() * 6) + 10
         target.charHealth -= damage
         this.charChakra -= 10
+        updateStatsOnDOM()
     } else {
         body.innerHTML = `
                 <h3>Not enough Chakra! Wait to recover!</h3>
@@ -146,6 +172,7 @@ chidori(target) {
         const damage = Math.floor(Math.random() * 6) + 25
         target.charHealth -= damage
         this.charChakra -= 40
+        updateStatsOnDOM()
     } else {
         body.innerHTML = `
                 <h3>Not enough Chakra!</h3>
@@ -158,6 +185,7 @@ susanoo(target) {
         const damage = Math.floor(Math.random() * 11) + 40
         target.charHealth -= damage
         this.charChakra -= 70
+        updateStatsOnDOM()
     } else {
         body.innerHTML = `
                 <h3>Not enough Chakra! Can't summon!</h3>
@@ -165,17 +193,10 @@ susanoo(target) {
     }
 }
 
-updateStatsOnDOM() {
-    const container = document.querySelector(".sasuke-stats")
-    container.innerHTML = `
-            <div class="sasuke-health">Health: <span>${this.charHealth}</span></div>
-            <div class="sasuke-chakra">Chakra: <span>${this.charChakra}</span></div>
-            `
-}
 }
 
-const narutoAvatar = new Avatar("Naruto")
-const sasukeAvatar = new Avatar("Sasuke")
+const naruto = new narutoClass("Naruto")
+const sasuke = new sasukeClass("Sasuke")
 
 /* ======================
 GLOBAL VARS
@@ -191,7 +212,7 @@ const backgroundImage = [
 let currentBackground = 0
 
 /* =============================
-FUNCTIONS
+FUNCTIONS BACKGROUND
 ============================= */
 function toggleModal() { modal.classList.toggle("open") }
 
@@ -224,9 +245,13 @@ function selectBackground() {
 }
 
 /* =============================
-NARUTO/SASUKE ATTACKS
+FUNCTIONS NARUTO/SASUKE ATTACKS
 ============================= */
 
+function naruAttack (target) {
+    naruto.attack(target)
+    console.log(naruAttack(sasuke))
+}
 
 
 /* =============================
@@ -237,3 +262,5 @@ setTimeout(openCarousel, 500)
 next.addEventListener("click", () => changeBg("next"))
 previous.addEventListener("click", () => changeBg("previous"))
 select.addEventListener("click",selectBackground)
+
+narutoAttack.addEventListener("click",naruto.attack(sasuke))

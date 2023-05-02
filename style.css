@@ -11,9 +11,59 @@ body {
     background-position: 50%;
 }
 
+h2 {
+    font-family: 'Ninja Naruto';
+    font-size: 40px;
+    color: orange;
+    -webkit-text-stroke: 1.5px;
+    -webkit-text-stroke-color: black;
+}
+
 /* ===============================
 CUSTOM SEIR STYLES
 =============================== */
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Ninja Naruto';
+    font-size: 15px;
+    color: white;
+    -webkit-text-stroke: 1.5px;
+    -webkit-text-stroke-color: black;
+}
+
+.naruto-health,
+.sasuke-health {
+    padding: 0.5rem;
+    background-color: greenyellow;
+    border: 3px darkgreen solid;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.naruto-chakra,
+.sasuke-chakra {
+    padding: 0.5rem;
+    background-color: skyblue;
+    border: 3px darkblue solid;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.carousel button {
+    text-align: center;
+    background-color: lightblue;
+    border: 3px black solid;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    height: 30px;
+    line-height: 3px;
+    padding: 1rem;
+    font-size: 13px;
+    font-weight: 100;
+    font-family: 'Ninja Naruto';
+    color: black;
+}
 
 .carousel {
     visibility: hidden;
@@ -26,7 +76,7 @@ CUSTOM SEIR STYLES
     left: 0;
     right: 0;
     margin: 0 auto;
-    background-color: white;
+    background-color: rgb(255, 245, 212);
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -68,6 +118,11 @@ CUSTOM SEIR STYLES
     opacity: 1;
 }
 
+button:hover {
+    transform: scale(0.95);
+    transition: transform 150ms ease-in;
+}
+
 .naruto-buttons button {
     background-color: orange;
     border: none;
@@ -75,7 +130,7 @@ CUSTOM SEIR STYLES
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     height: 50px;
-    line-height: 5px;
+    
     padding: 1.5rem;
     font-size: 17px;
     font-weight: 500;
