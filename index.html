@@ -3,47 +3,70 @@
 
 <head>
     <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naruto vs Sasuke</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naruto vs Sasuke</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 
 <body>
+
+    <audio autoplay loop>
+        <source src="/Users/sanlaelaecho/portfolio-projects/projects/unit-1-project/Naruto Battle Music.mp3"
+            type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
     <div>
-        <!-- Home -->
+        <!-- Constant Background Items -->
         <section id="home">
-            <!--Naruto Fight Buttons-->
-            <div class="control-panel flex-container">
-                <div class="naruto-buttons">
-                    <button class="narutoAttack">Attack</button>
-                    <button class="narutoClone">Shadow Clone Jutsu</button>
-                    <button class="narutoRasengan">Rasengan</button>
-                    <button class="naruto9Tail">Transforms to 9 Tails</button>
-                </div>
-                <div class="sasuke-buttons">
-                    <button class="sasukeAttack">Attack</button>
-                    <button class="sasukeFire">Fireball Jutsu</button>
-                    <button class="sasukeChidori">Chidori</button>
-                    <button class="sasukeSusanoo">Summons Susanoo</button>
-                </div>
-            </div>
+            <img src="https://i.imgur.com/G9Jnqgq.png" alt="Naruto" />
+            <img src="https://i.imgur.com/92r3lJG.png" alt="vs" />
+            <img src="https://i.imgur.com/WtMofm8.png" alt="Sasuke" />
         </section>
+        <div class="naruto-stats">
+            <div class="naruto-health">Health: <span>100</span></div>
+            <div class="naruto-chakra">Chakra: <span>100</span></div>
+        </div>
+        <div class="sasuke-stats">
+            <div class="sasuke-health">Health: <span>100</span></div>
+            <div class="sasuke-chakra">Chakra: <span>100</span></div>
+        </div>
     </div>
 
-<!-- Choose Background Carousel -->
-<div class="carousel">
-    <h2>Pick your location to FIGHT!!</h2>
-    <button class="previous">Previous</button>
-    <button class="next">Next</button>
-    <img src="" alt="" />
-    <button class="select">Fight Here!!</button>
-</div>
+    <!-- Choose Background Carousel -->
+    <div class="carousel">
+        <h2>Pick your location to FIGHT!!</h2>
+        <button class="previous">Previous</button>
+        <button class="next">Next</button>
+        <img src="" alt="" />
+        <button class="select">Fight Here!!</button>
+    </div>
 
-<!-- Winning/Losing Message Modal -->
-<div class="modal-game-over">
-    <button class="play-again">Play Again!</button>
-</div>
+    <!-- Winning/Losing Message Modal -->
+    <div class="modal-game-over">
+        <button class="play-again">Play Again!</button>
+    </div>
+
+
+
+    <!--Naruto & Sasuke Fight Buttons-->
+    <div class="control-panel flex-container">
+        <div class="naruto-buttons">
+            <button class="naruto-attack">Attack</button>
+            <button class="naruto-clone">Shadow Clone Jutsu</button>
+            <button class="naruto-rasengan">Rasengan</button>
+            <button class="naruto-9Tail">Transforms to 9 Tails</button>
+        </div>
+        <div class="sasuke-buttons">
+            <button class="sasuke-attack">Attack</button>
+            <button class="sasuke-fire">Fireball Jutsu</button>
+            <button class="sasuke-chidori">Chidori</button>
+            <button class="sasuke-susanoo">Summons Susanoo</button>
+        </div>
+    </div>
+
 </body>
 
 </html>
