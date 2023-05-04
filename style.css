@@ -19,6 +19,22 @@ h2 {
     -webkit-text-stroke-color: black;
 }
 
+h3 {
+    font-family: 'Ninja Naruto';
+    font-size: 40px;
+    color: lightblue;
+    -webkit-text-stroke: 1.5px;
+    -webkit-text-stroke-color: navy;
+}
+
+h4 {
+    font-family: 'Ninja Naruto';
+    font-size: 20px;
+    color: rgb(0, 162, 255);
+    -webkit-text-stroke: 1.5px;
+    -webkit-text-stroke-color: navy;
+}
+
 /* ===============================
 CUSTOM SEIR STYLES
 =============================== */
@@ -95,7 +111,7 @@ CUSTOM SEIR STYLES
     margin: 1rem 0;
 }
 
-.modal-game-over {
+.modal-noti {
     visibility: hidden;
     width: 50vw;
     max-width: 500px;
@@ -107,6 +123,29 @@ CUSTOM SEIR STYLES
     right: 0;
     margin: 0 auto;
     background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    opacity: 0;
+}
+
+.modal-no-chakra.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-game-over {
+    visibility: hidden;
+    width: 50vw;
+    max-width: 500px;
+    padding: 50px;
+    position: fixed;
+    top: 45%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: lightgoldenrodyellow;
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -151,6 +190,22 @@ button:hover {
     font-weight: 500;
     font-family: 'Ninja Naruto';
     color: white;
+}
+
+.play-again {
+    text-align: center;
+    background-color: orangered;
+    border: 3px black solid;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    height: 50px;
+    line-height: 3px;
+    padding: 1.5rem;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Ninja Naruto';
+    color: lightgoldenrodyellow;
 }
 
 /* ===============================
