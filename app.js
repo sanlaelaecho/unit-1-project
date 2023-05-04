@@ -10,7 +10,6 @@ window.onbeforeunload = function() {
 }
 */
 
-console.log('it works!')
 /* ======================
 CACHED DOM NODES
 ========================= */
@@ -49,31 +48,11 @@ class Avatar {
             const damage = Math.floor(Math.random() * 10) + 1
             target.charHealth -= damage
             this.charChakra -= 5
-            this.updateStatsOnNarutoDOM()
-            target.updateStatsOnSasukeDOM()
-        } else {
-            body.innerHTML = `
-                <h3>Not enough Chakra! Wait to recover!</h3>
-            `
+            updateStatsOnDOM(naruto, sasuke)
         }
     }
 
-    updateStatsOnNarutoDOM() {
-        const container = document.querySelector(".naruto-stats")
-        container.innerHTML = `
-                <img src="https://i.imgur.com/G9Jnqgq.png" alt="Naruto" />
-                <div class="naruto-health">Health: <span>${this.charHealth}</span></div>
-                <div class="naruto-chakra">Chakra: <span>${this.charChakra}</span></div>
-                `
-    }
-    updateStatsOnSasukeDOM() {
-        const container = document.querySelector(".sasuke-stats")
-        container.innerHTML = `
-                <img src="https://i.imgur.com/WtMofm8.png" alt="Sasuke" />
-                <div class="sasuke-health">Health: <span>${this.charHealth}</span></div>
-                <div class="sasuke-chakra">Chakra: <span>${this.charChakra}</span></div>
-                `
-    }
+
 }
 
 class narutoClass extends Avatar {
@@ -86,50 +65,39 @@ class narutoClass extends Avatar {
             narutoImg9Tail: "https://e7.pngegg.com/pngimages/766/820/png-clipart-naruto-uzumaki-nine-tailed-fox-kurama-tailed-beasts-naruto-giraffe-cartoon.png"
         }
     }
-    
 
-evolveNaruto () {
-    
-}
 
-clone(target) {
-    if (this.charChakra >= 10) {
-        const damage = Math.floor(Math.random() * 6) + 10
-        target.charHealth -= damage
-        this.charChakra -= 10
-        updateStatsOnDOM()
-    } else {
-        body.innerHTML = `
-                <h3>Not enough Chakra! Wait to recover!</h3>
-            `
+    evolveNaruto() {
+
     }
-}
 
-rasengan(target) {
-    if (this.charChakra >= 40) {
-        const damage = Math.floor(Math.random() * 6) + 25
-        target.charHealth -= damage
-        this.charChakra -= 40
-        updateStatsOnDOM()
-    } else {
-        body.innerHTML = `
-                <h3>Not enough Chakra!</h3>
-            `
-    }
-}
+    clone(target) {
+        if (this.charChakra >= 10) {
+            const damage = Math.floor(Math.random() * 6) + 10
+            target.charHealth -= damage
+            this.charChakra -= 10
+            updateStatsOnDOM(naruto, sasuke)
 
-nineTails(target) {
-    if (this.charChakra >= 70) {
-        const damage = Math.floor(Math.random() * 11) + 40
-        target.charHealth -= damage
-        this.charChakra -= 70
-        updateStatsOnDOM()
-    } else {
-        body.innerHTML = `
-                <h3>Not enough Chakra! Can't transform!</h3>
-            `
+        }
     }
-}
+
+    rasengan(target) {
+        if (this.charChakra >= 40) {
+            const damage = Math.floor(Math.random() * 6) + 25
+            target.charHealth -= damage
+            this.charChakra -= 40
+            updateStatsOnDOM(naruto, sasuke)
+        }
+    }
+
+    nineTails(target) {
+        if (this.charChakra >= 70) {
+            const damage = Math.floor(Math.random() * 11) + 40
+            target.charHealth -= damage
+            this.charChakra -= 70
+            updateStatsOnDOM(naruto, sasuke)
+        }
+    }
 
 
 
@@ -151,47 +119,47 @@ class sasukeClass extends Avatar {
             sasukeImgFire: "https://www.pngitem.com/pimgs/m/407-4072625_sasuke-shippuden-fire-ball-jutsu-hd-png-download.png",
             sasukeImgChidori: "https://e7.pngegg.com/pngimages/425/854/png-clipart-sasuke-uchiha-itachi-uchiha-chidori-anime-anime-photography-computer-wallpaper.png",
             sasukeImgSusanoo: "https://e7.pngegg.com/pngimages/1013/267/png-clipart-sasuke-uchiha-itachi-uchiha-naruto-uchiha-clan-susanoo-no-mikoto-skeleton-watching-tv.png"
-    } 
-}
+        }
+    }
 
-fireball(target) {
-    if (this.charChakra >= 10) {
-        const damage = Math.floor(Math.random() * 6) + 10
-        target.charHealth -= damage
-        this.charChakra -= 10
-        updateStatsOnDOM()
-    } else {
-        body.innerHTML = `
+    fireball(target) {
+        if (this.charChakra >= 10) {
+            const damage = Math.floor(Math.random() * 6) + 10
+            target.charHealth -= damage
+            this.charChakra -= 10
+            updateStatsOnDOM(naruto, sasuke)
+        } else {
+            body.innerHTML = `
                 <h3>Not enough Chakra! Wait to recover!</h3>
             `
+        }
     }
-}
 
-chidori(target) {
-    if (this.charChakra >= 40) {
-        const damage = Math.floor(Math.random() * 6) + 25
-        target.charHealth -= damage
-        this.charChakra -= 40
-        updateStatsOnDOM()
-    } else {
-        body.innerHTML = `
+    chidori(target) {
+        if (this.charChakra >= 40) {
+            const damage = Math.floor(Math.random() * 6) + 25
+            target.charHealth -= damage
+            this.charChakra -= 40
+            updateStatsOnDOM(naruto, sasuke)
+        } else {
+            body.innerHTML = `
                 <h3>Not enough Chakra!</h3>
             `
+        }
     }
-}
 
-susanoo(target) {
-    if (this.charChakra >= 70) {
-        const damage = Math.floor(Math.random() * 11) + 40
-        target.charHealth -= damage
-        this.charChakra -= 70
-        updateStatsOnDOM()
-    } else {
-        body.innerHTML = `
+    susanoo(target) {
+        if (this.charChakra >= 70) {
+            const damage = Math.floor(Math.random() * 11) + 40
+            target.charHealth -= damage
+            this.charChakra -= 70
+            updateStatsOnDOM(naruto, sasuke)
+        } else {
+            body.innerHTML = `
                 <h3>Not enough Chakra! Can't summon!</h3>
             `
+        }
     }
-}
 
 }
 
@@ -205,7 +173,9 @@ GLOBAL VARS
 const backgroundImage = [
     "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eb474a69-cf12-4a80-9735-703239dca1fd/dc0c07g-cabdc08e-9326-49ba-9d2e-dd3634bb23af.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ViNDc0YTY5LWNmMTItNGE4MC05NzM1LTcwMzIzOWRjYTFmZFwvZGMwYzA3Zy1jYWJkYzA4ZS05MzI2LTQ5YmEtOWQyZS1kZDM2MzRiYjIzYWYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.GndPI9s9TjxH6-7bnnfhJInR6vtinkapEHz36yPiZ_E",
     "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/84dc13b7-a2e7-4b45-83ec-311e72e82900/ddlnx85-af0e161c-6071-4157-b021-b28a58ef275a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzg0ZGMxM2I3LWEyZTctNGI0NS04M2VjLTMxMWU3MmU4MjkwMFwvZGRsbng4NS1hZjBlMTYxYy02MDcxLTQxNTctYjAyMS1iMjhhNThlZjI3NWEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.eqnsSOdDUvvii_OgzaTYrXRW-Ax0_WDSp9dwhXVdB3Y",
-    "https://static.wikia.nocookie.net/naruto/images/5/5a/Kumogakure.png/revision/latest?cb=20160129210622",
+    "https://wallpaperaccess.com/full/3948996.jpg",
+    "https://images.start.gg/images/tournament/289797/image-c5c752996c1d06b48c8a90d5dfdacc6a.png?ehk=SqBiJLOchN4v6%2BH%2FTdfVr6eDrBMc3NctYO3YOALgd4o%3D&ehkOptimized=3dT5tdfKHCjhm%2BUOXjWF6xuBAivhlnE62rsqfzU0qRE%3D",
+    "https://static.wikia.nocookie.net/narutofanon/images/f/fc/Ryuhone_Desert.png/revision/latest/scale-to-width-down/1000?cb=20141002162139",
     "https://static.wikia.nocookie.net/naruto/images/f/f8/Kaguya%27s_Core_Dimension.png/revision/latest/scale-to-width-down/1000?cb=20160901114351"
 ]
 
@@ -214,7 +184,7 @@ let currentBackground = 0
 /* =============================
 FUNCTIONS BACKGROUND
 ============================= */
-function toggleModal() { modal.classList.toggle("open") }
+//function toggleModal() { modal.classList.toggle("open") }
 
 function changeBg(direction) {
     if (direction === "next") {
@@ -236,7 +206,7 @@ function changeBg(direction) {
 function openCarousel() {
     carousel.classList.add("open")
     carouselImg.setAttribute("src", backgroundImage[currentBackground])
-    toggleModel()
+    toggleModal()
 }
 
 function selectBackground() {
@@ -245,13 +215,30 @@ function selectBackground() {
 }
 
 /* =============================
-FUNCTIONS NARUTO/SASUKE ATTACKS
+GLOBAL FUNCTIONS 
 ============================= */
 
-function naruAttack (target) {
-    naruto.attack(target)
-    console.log(naruAttack(sasuke))
+function updateStatsOnDOM(player1, player2) {
+    const player1Container = document.querySelector(".naruto-stats")
+    player1Container.innerHTML = `
+            <div class="naruto-health">Health: <span>${player1.charHealth}</span></div>
+            <div class="naruto-chakra">Chakra: <span>${player1.charChakra}</span></div>
+            `
+    const player2Container = document.querySelector(".sasuke-stats")
+    player2Container.innerHTML = `
+            <div class="sasuke-health">Health: <span>${player2.charHealth}</span></div>
+            <div class="sasuke-chakra">Chakra: <span>${player2.charChakra}</span></div>
+            `
 }
+
+function naruAttack(target) { naruto.attack(target) }
+function naruClone(target) { naruto.clone(target) }
+function naruRasengan(target) {naruto.rasengan(target)}
+function naru9Tails(target) { naruto.nineTails(target) }
+function sasuAttack(target) {sasuke.attack(target)}
+function sasuFire(target) {sasuke.fireball(target)}
+function sasuChidori(target) {sasuke.chidori(target)}
+function sasuSusanoo(target) {sasuke.susanoo(target)} 
 
 
 /* =============================
@@ -261,6 +248,12 @@ EVENT LISTENERS
 setTimeout(openCarousel, 500)
 next.addEventListener("click", () => changeBg("next"))
 previous.addEventListener("click", () => changeBg("previous"))
-select.addEventListener("click",selectBackground)
+select.addEventListener("click", selectBackground)
 
-narutoAttack.addEventListener("click",naruto.attack(sasuke))
+narutoAttack.addEventListener("click", function() {naruAttack(sasuke)})
+narutoClone.addEventListener("click", function() {naruClone(sasuke)})
+narutoRasengan.addEventListener("click", function() {naruRasengan(sasuke)})
+narutoTails.addEventListener("click", function() {naru9Tails(sasuke)})
+sasukeAttack.addEventListener("click",function() {sasuAttack(naruto)})
+sasukeFire.addEventListener("click", function() {sasuFire(naruto)})
+sasukeChidori.addEventListener("click", function() {sasuChidori(naruto)})
