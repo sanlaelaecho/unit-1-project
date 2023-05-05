@@ -32,6 +32,8 @@ const sasukeFire = document.querySelector(".sasuke-fire")
 const sasukeChidori = document.querySelector(".sasuke-chidori")
 const sasukeSusanoo = document.querySelector(".sasuke-susanoo")
 
+const h3 = document.querySelector("#sasuWin")
+const h2 = document.querySelector("#naruWin")
 const playAgain = document.querySelector(".play-again")
 
 /* ======================
@@ -84,6 +86,7 @@ class narutoClass extends Avatar {
                 <h4>Not enough Chakra! Wait to recover!</h4>
             `
         } renderMessage()
+
     }
 
     rasengan(target) {
@@ -188,12 +191,12 @@ const backgroundImage = [
 
 let currentBackground = 0
 
+const stopRecovery = recoverChakra(naruto, sasuke, false)
+
 /* =============================
 FUNCTIONS BACKGROUND
 ============================= */
-function toggleNotiModal() {
-    setTimeout(modalNoti.classList.toggle("open"), 200)
-}
+function toggleNotiModal() { modalNoti.classList.toggle("open") }
 function togglePlayAgainModal() { modal.classList.toggle("open") }
 
 function changeBg(direction) {
@@ -221,91 +224,99 @@ function openCarousel() {
 function selectBackground() {
     carousel.classList.remove("open")
     body.style.backgroundImage = `url(${backgroundImage[currentBackground]})`
-    recoverChakra(naruto,sasuke)
+    recoverChakra(naruto, sasuke)
 }
 
-function recoverChakra(player1, player2) {
-    setInterval((player1, player2) => {
-        player1.charChakra += 10
-        player2.charChakra += 10
-        updateStatsOnDOM(player1,player2)
-    }, 2000)
-}
+function recoverChakra(player1, player2, startInterval) {
+    let interval
+    if (startInterval) {
+        interval = setInterval(() => {
+            player1.charChakra += 10
+            player2.charChakra += 10
+            updateStatsOnDOM(player1, player2)
+            if (player1.charHealth <= 0 || player2.charHealth <= 0) {
+                clearInterval(interval)
+                stopRecovery()
+            }
+        }, 3000, player1, player2)
 
-function renderMessage() {
-    if (naruto.charHealth <= 0) {
-        togglePlayAgainModal()
-        modal.innerHTML = `
-            <h3>Sasuke WINS!!!</h3>
-            <button class="play-again">Play Again!</button>    
-        `
-    } else if (sasuke.charHealth <= 0) {
-        togglePlayAgainModal()
-        modal.innerHTML = `
-            <h2>Naruto WINS!!!</h2>
-            <button class="play-again">Play Again!</button>
-        `
+        function stopRecovery() {
+            clearInterval(interval)
+        } return stopRecovery
     }
-}
-
-function renderReset(player1, player2) {
-    player1.charHealth = 100
-    player1.charChakra = 100
-    player2.charHealth = 100
-    player2.charChakra = 100
-    updateStatsOnDOM(player1, player2)
-}
 
 
 
-/* =============================
-GLOBAL FUNCTIONS 
-============================= */
+    function renderMessage() {
+        if (naruto.charHealth <= 0) {
+            togglePlayAgainModal()
+            h3.innerHTML = "Sasuke WINS!!!"
+        } else if (sasuke.charHealth <= 0) {
+            togglePlayAgainModal()
+            h2.innerHTML = "Naruto WINS!!!"
+        }
+    }
 
-function updateStatsOnDOM(player1, player2) {
-    const player1Container = document.querySelector(".naruto-stats")
-    player1Container.innerHTML = `
+    function renderReset(player1, player2) {
+        player1.charHealth = 100
+        player1.charChakra = 100
+        player2.charHealth = 100
+        player2.charChakra = 100
+        updateStatsOnDOM(player1, player2)
+
+    }
+
+
+
+    /* =============================
+    GLOBAL FUNCTIONS 
+    ============================= */
+
+    function updateStatsOnDOM(player1, player2) {
+        const player1Container = document.querySelector(".naruto-stats")
+        player1Container.innerHTML = `
             <div class="naruto-health">Health: <span>${player1.charHealth}</span></div>
             <div class="naruto-chakra">Chakra: <span>${player1.charChakra}</span></div>
             `
-    const player2Container = document.querySelector(".sasuke-stats")
-    player2Container.innerHTML = `
+        const player2Container = document.querySelector(".sasuke-stats")
+        player2Container.innerHTML = `
             <div class="sasuke-health">Health: <span>${player2.charHealth}</span></div>
             <div class="sasuke-chakra">Chakra: <span>${player2.charChakra}</span></div>
             `
-}
+    }
+
+    function naruAttack(target) {
+        naruto.attack(target)
+    }
+    function naruClone(target) { naruto.clone(target) }
+    function naruRasengan(target) { naruto.rasengan(target) }
+    function naru9Tails(target) { naruto.nineTails(target) }
+    function sasuAttack(target) { sasuke.attack(target) }
+    function sasuFire(target) { sasuke.fireball(target) }
+    function sasuChidori(target) { sasuke.chidori(target) }
+    function sasuSusanoo(target) { sasuke.susanoo(target) }
 
 
-function naruAttack(target) {
-    naruto.attack(target)
-    //    setTimeout(if(naruto.charChakra < 100) naruto.charChakra += 10, 500)
-    //    setTimeout(if(target.charChakra < 100) target.charChakra += 10, 500)
-}
-function naruClone(target) { naruto.clone(target) }
-function naruRasengan(target) { naruto.rasengan(target) }
-function naru9Tails(target) { naruto.nineTails(target) }
-function sasuAttack(target) { sasuke.attack(target) }
-function sasuFire(target) { sasuke.fireball(target) }
-function sasuChidori(target) { sasuke.chidori(target) }
-function sasuSusanoo(target) { sasuke.susanoo(target) }
+    /* =============================
+    EVENT LISTENERS
+    ============================= */
 
+    setTimeout(openCarousel, 500)
+    next.addEventListener("click", () => changeBg("next"))
+    previous.addEventListener("click", () => changeBg("previous"))
+    select.addEventListener("click", selectBackground)
 
-/* =============================
-EVENT LISTENERS
-============================= */
+    narutoAttack.addEventListener("click", function () { naruAttack(sasuke) })
+    narutoClone.addEventListener("click", function () { naruClone(sasuke) })
+    narutoRasengan.addEventListener("click", function () { naruRasengan(sasuke) })
+    narutoTails.addEventListener("click", function () { naru9Tails(sasuke) })
+    sasukeAttack.addEventListener("click", function () { sasuAttack(naruto) })
+    sasukeFire.addEventListener("click", function () { sasuFire(naruto) })
+    sasukeChidori.addEventListener("click", function () { sasuChidori(naruto) })
+    sasukeSusanoo.addEventListener("click", function () { sasuSusanoo(naruto) })
 
-setTimeout(openCarousel, 500)
-next.addEventListener("click", () => changeBg("next"))
-previous.addEventListener("click", () => changeBg("previous"))
-select.addEventListener("click", selectBackground)
-
-narutoAttack.addEventListener("click", function () { naruAttack(sasuke) })
-narutoClone.addEventListener("click", function () { naruClone(sasuke) })
-narutoRasengan.addEventListener("click", function () { naruRasengan(sasuke) })
-narutoTails.addEventListener("click", function () { naru9Tails(sasuke) })
-sasukeAttack.addEventListener("click", function () { sasuAttack(naruto) })
-sasukeFire.addEventListener("click", function () { sasuFire(naruto) })
-sasukeChidori.addEventListener("click", function () { sasuChidori(naruto) })
-sasukeSusanoo.addEventListener("click", function () { sasuSusanoo(naruto) })
-
-playAgain.addEventListener("click", function () { renderReset(naruto, sasuke) })
+    playAgain.addEventListener("click", function () {
+        renderReset(naruto, sasuke)
+        modal.classList.remove("open")
+        recoverChakra(naruto,sasuke, true)
+    })
