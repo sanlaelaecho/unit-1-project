@@ -29,7 +29,7 @@ h3 {
 
 h4 {
     font-family: 'Ninja Naruto';
-    font-size: 20px;
+    font-size: 25px;
     color: rgb(0, 162, 255);
     -webkit-text-stroke: 1.5px;
     -webkit-text-stroke-color: navy;
@@ -122,14 +122,14 @@ CUSTOM SEIR STYLES
     left: 0;
     right: 0;
     margin: 0 auto;
-    background-color: white;
+    background-color: rgb(207, 232, 239);
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     text-align: center;
     opacity: 0;
 }
 
-.modal-no-chakra.open {
+.modal-noti.open {
     visibility: visible;
     opacity: 1;
 }

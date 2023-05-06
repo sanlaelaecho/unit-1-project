@@ -56,6 +56,14 @@ class Avatar {
             target.charHealth -= damage
             this.charChakra -= 5
             updateStatsOnDOM(naruto, sasuke)
+            turn *= -1
+            turnBasedBtns()
+        } else {
+            toggleNotiModal()
+            modalNoti.innerHTML = `
+                <h4>Not enough Chakra! Wait to recover!</h4>
+            `
+            closeNotiModal()
         } renderMessage()
     }
 
@@ -84,11 +92,14 @@ class narutoClass extends Avatar {
             target.charHealth -= damage
             this.charChakra -= 10
             updateStatsOnDOM(naruto, sasuke)
+            turn *= -1
+            turnBasedBtns()
         } else {
             toggleNotiModal()
             modalNoti.innerHTML = `
                 <h4>Not enough Chakra! Wait to recover!</h4>
             `
+            closeNotiModal()
         } renderMessage()
 
     }
@@ -99,11 +110,14 @@ class narutoClass extends Avatar {
             target.charHealth -= damage
             this.charChakra -= 40
             updateStatsOnDOM(naruto, sasuke)
+            turn *= -1
+            turnBasedBtns()
         } else {
             toggleNotiModal()
             modalNoti.innerHTML = `
                     <h4>Not enough Chakra!</h4>
                 `
+            closeNotiModal()
         } renderMessage()
     }
 
@@ -113,11 +127,14 @@ class narutoClass extends Avatar {
             target.charHealth -= damage
             this.charChakra -= 70
             updateStatsOnDOM(naruto, sasuke)
+            turn *= -1
+            turnBasedBtns()
         } else {
             toggleNotiModal()
             modalNoti.innerHTML = `
                     <h4>Not enough Chakra! Can't transform!</h4>
                 `
+            closeNotiModal()
         } renderMessage()
     }
 }
@@ -139,11 +156,14 @@ class sasukeClass extends Avatar {
             target.charHealth -= damage
             this.charChakra -= 10
             updateStatsOnDOM(naruto, sasuke)
+            turn *= -1
+            turnBasedBtns()
         } else {
             toggleNotiModal()
             modalNoti.innerHTML = `
                 <h4>Not enough Chakra! Wait to recover!</h4>
             `
+            closeNotiModal()
         } renderMessage()
     }
 
@@ -153,11 +173,14 @@ class sasukeClass extends Avatar {
             target.charHealth -= damage
             this.charChakra -= 40
             updateStatsOnDOM(naruto, sasuke)
+            turn *= -1
+            turnBasedBtns()
         } else {
             toggleNotiModal()
             modalNoti.innerHTML = `
                 <h4>Not enough Chakra!</h4>
             `
+            closeNotiModal()
         } renderMessage()
     }
 
@@ -167,11 +190,14 @@ class sasukeClass extends Avatar {
             target.charHealth -= damage
             this.charChakra -= 70
             updateStatsOnDOM(naruto, sasuke)
+            turn *= -1
+            turnBasedBtns()
         } else {
             toggleNotiModal()
             modalNoti.innerHTML = `
                 <h4>Not enough Chakra! Can't summon!</h4>
             `
+            closeNotiModal()
         } renderMessage()
     }
 
@@ -211,7 +237,6 @@ function chooseTurn() {
     }
 }
 
-
 function turnBasedBtns() {
     if (turn === 1) {
         sasukeBtns.forEach(button => {
@@ -235,6 +260,12 @@ function turnBasedBtns() {
 FUNCTIONS IN BACKGROUND
 ============================= */
 function toggleNotiModal() { modalNoti.classList.toggle("open") }
+function closeNotiModal() {
+    setTimeout(() => {
+        modalNoti.classList.remove("open")
+    }, 1000)
+}
+
 function togglePlayAgainModal() { modal.classList.toggle("open") }
 
 function changeBg(direction) {
@@ -342,46 +373,14 @@ next.addEventListener("click", () => changeBg("next"))
 previous.addEventListener("click", () => changeBg("previous"))
 select.addEventListener("click", selectBackground)
 
-narutoAttack.addEventListener("click", function () {
-    naruAttack(sasuke)
-    turn *= -1
-    turnBasedBtns()
-})
-narutoClone.addEventListener("click", function () {
-    naruClone(sasuke)
-    turn *= -1
-    turnBasedBtns()
-})
-narutoRasengan.addEventListener("click", function () {
-    naruRasengan(sasuke)
-    turn *= -1
-    turnBasedBtns()
-})
-narutoTails.addEventListener("click", function () {
-    naru9Tails(sasuke)
-    turn *= -1
-    turnBasedBtns()
-})
-sasukeAttack.addEventListener("click", function () {
-    sasuAttack(naruto)
-    turn *= -1
-    turnBasedBtns()
-})
-sasukeFire.addEventListener("click", function () {
-    sasuFire(naruto)
-    turn *= -1
-    turnBasedBtns()
-})
-sasukeChidori.addEventListener("click", function () {
-    sasuChidori(naruto)
-    turn *= -1
-    turnBasedBtns()
-})
-sasukeSusanoo.addEventListener("click", function () {
-    sasuSusanoo(naruto)
-    turn *= -1
-    turnBasedBtns()
-})
+narutoAttack.addEventListener("click", function () { naruAttack(sasuke) })
+narutoClone.addEventListener("click", function () { naruClone(sasuke) })
+narutoRasengan.addEventListener("click", function () { naruRasengan(sasuke) })
+narutoTails.addEventListener("click", function () { naru9Tails(sasuke) })
+sasukeAttack.addEventListener("click", function () { sasuAttack(naruto) })
+sasukeFire.addEventListener("click", function () { sasuFire(naruto) })
+sasukeChidori.addEventListener("click", function () { sasuChidori(naruto) })
+sasukeSusanoo.addEventListener("click", function () { sasuSusanoo(naruto) })
 
 playAgain.addEventListener("click", function () {
     renderReset(naruto, sasuke)
