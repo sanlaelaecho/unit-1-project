@@ -198,39 +198,38 @@ let currentBackground = 0
 let stopRecovery
 
 let turn
-let stopTurn
 
 /* ======================
 PLAYERS ALTERNATING TURNS
 ========================= */
 
 function chooseTurn() {
-    turn = setTurn(() => {
-        Math.floor(Math.random() * 3) - 1
+    turn = Math.floor(Math.random() * 3) - 1
 
-        while (turn === 0) {
-            turn = Math.floor(Math.random() * 3) - 1
-        }
-    })
-
-    return function () {
-        if (turn === 1) {
-            sasukeBtns.forEach(button => {
-                button.disabled = true
-                narutoBtns.forEach(button => {
-                    button.disabled = false
-                })
-            })
-        } else if (turn === -1) {
-            narutoBtns.forEach(button => {
-                button.disabled = true
-                sasukeBtns.forEach(button => {
-                    button.disabled = false
-                })
-            })
-        } console.log(turn)
+    while (turn === 0) {
+        turn = Math.floor(Math.random() * 3) - 1
     }
 }
+
+
+function turnBasedBtns() {
+    if (turn === 1) {
+        sasukeBtns.forEach(button => {
+            button.disabled = true
+            narutoBtns.forEach(button => {
+                button.disabled = false
+            })
+        })
+    } else if (turn === -1) {
+        narutoBtns.forEach(button => {
+            button.disabled = true
+            sasukeBtns.forEach(button => {
+                button.disabled = false
+            })
+        })
+    } console.log(turn)
+}
+
 
 /* =============================
 FUNCTIONS IN BACKGROUND
@@ -264,7 +263,8 @@ function selectBackground() {
     carousel.classList.remove("open")
     body.style.backgroundImage = `url(${backgroundImage[currentBackground]})`
     stopRecovery = recoverChakra(naruto, sasuke)
-    stopTurn = chooseTurn()
+    chooseTurn()
+    turnBasedBtns()
 }
 
 function recoverChakra(player1, player2) {
@@ -345,42 +345,42 @@ select.addEventListener("click", selectBackground)
 narutoAttack.addEventListener("click", function () {
     naruAttack(sasuke)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 narutoClone.addEventListener("click", function () {
     naruClone(sasuke)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 narutoRasengan.addEventListener("click", function () {
     naruRasengan(sasuke)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 narutoTails.addEventListener("click", function () {
     naru9Tails(sasuke)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 sasukeAttack.addEventListener("click", function () {
     sasuAttack(naruto)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 sasukeFire.addEventListener("click", function () {
     sasuFire(naruto)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 sasukeChidori.addEventListener("click", function () {
     sasuChidori(naruto)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 sasukeSusanoo.addEventListener("click", function () {
     sasuSusanoo(naruto)
     turn *= -1
-    stopTurn()
+    turnBasedBtns()
 })
 
 playAgain.addEventListener("click", function () {
@@ -388,4 +388,5 @@ playAgain.addEventListener("click", function () {
     chooseTurn()
     console.log(turn)
     modal.classList.remove("open")
+    turnBasedBtns()
 })

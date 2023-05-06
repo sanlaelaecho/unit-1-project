@@ -192,6 +192,11 @@ button:hover {
     color: white;
 }
 
+.control-panel button:disabled {
+    background-color: gray;
+    color: black;
+}
+
 .play-again {
     text-align: center;
     background-color: orangered;
