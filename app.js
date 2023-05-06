@@ -1,6 +1,7 @@
 /* ======================
 BGM
 ========================= 
+Need to figure out how to link online audio
 
 const backgroundMusic = document.getElementById("background-music")
 backgroundMusic.play()
@@ -23,10 +24,13 @@ const select = document.querySelector(".carousel .select")
 const modalNoti = document.querySelector(".modal-noti")
 const modal = document.querySelector(".modal-game-over")
 
+const narutoBtns = document.querySelectorAll(".naruto-buttons button")
 const narutoAttack = document.querySelector(".naruto-attack")
 const narutoClone = document.querySelector(".naruto-clone")
 const narutoRasengan = document.querySelector(".naruto-rasengan")
 const narutoTails = document.querySelector(".naruto-9Tail")
+
+const sasukeBtns = document.querySelectorAll(".sasuke-buttons button")
 const sasukeAttack = document.querySelector(".sasuke-attack")
 const sasukeFire = document.querySelector(".sasuke-fire")
 const sasukeChidori = document.querySelector(".sasuke-chidori")
@@ -179,7 +183,6 @@ const sasuke = new sasukeClass("Sasuke")
 /* ======================
 GLOBAL VARS
 ========================= */
-let turn
 
 const backgroundImage = [
     "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eb474a69-cf12-4a80-9735-703239dca1fd/dc0c07g-cabdc08e-9326-49ba-9d2e-dd3634bb23af.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ViNDc0YTY5LWNmMTItNGE4MC05NzM1LTcwMzIzOWRjYTFmZFwvZGMwYzA3Zy1jYWJkYzA4ZS05MzI2LTQ5YmEtOWQyZS1kZDM2MzRiYjIzYWYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.GndPI9s9TjxH6-7bnnfhJInR6vtinkapEHz36yPiZ_E",
@@ -194,8 +197,43 @@ let currentBackground = 0
 
 let stopRecovery
 
+let turn
+let stopTurn
+
+/* ======================
+PLAYERS ALTERNATING TURNS
+========================= */
+
+function chooseTurn() {
+    turn = setTurn(() => {
+        Math.floor(Math.random() * 3) - 1
+
+        while (turn === 0) {
+            turn = Math.floor(Math.random() * 3) - 1
+        }
+    })
+
+    return function () {
+        if (turn === 1) {
+            sasukeBtns.forEach(button => {
+                button.disabled = true
+                narutoBtns.forEach(button => {
+                    button.disabled = false
+                })
+            })
+        } else if (turn === -1) {
+            narutoBtns.forEach(button => {
+                button.disabled = true
+                sasukeBtns.forEach(button => {
+                    button.disabled = false
+                })
+            })
+        } console.log(turn)
+    }
+}
+
 /* =============================
-FUNCTIONS BACKGROUND
+FUNCTIONS IN BACKGROUND
 ============================= */
 function toggleNotiModal() { modalNoti.classList.toggle("open") }
 function togglePlayAgainModal() { modal.classList.toggle("open") }
@@ -226,6 +264,7 @@ function selectBackground() {
     carousel.classList.remove("open")
     body.style.backgroundImage = `url(${backgroundImage[currentBackground]})`
     stopRecovery = recoverChakra(naruto, sasuke)
+    stopTurn = chooseTurn()
 }
 
 function recoverChakra(player1, player2) {
@@ -247,10 +286,12 @@ function renderMessage() {
         togglePlayAgainModal()
         stopRecovery()
         h3.innerHTML = "Sasuke WINS!!!"
+        h2.innerHTML = ""
     } else if (sasuke.charHealth <= 0) {
         togglePlayAgainModal()
         stopRecovery()
         h2.innerHTML = "Naruto WINS!!!"
+        h3.innerHTML = ""
     }
 }
 
@@ -260,13 +301,13 @@ function renderReset(player1, player2) {
     player2.charHealth = 100
     player2.charChakra = 100
     updateStatsOnDOM(player1, player2)
-    recoverChakra(naruto, sasuke, true)
+    stopRecovery = recoverChakra(naruto, sasuke)
 }
 
 
 
 /* =============================
-GLOBAL FUNCTIONS 
+GLOBAL PLAYER FUNCTIONS 
 ============================= */
 
 function updateStatsOnDOM(player1, player2) {
@@ -282,11 +323,7 @@ function updateStatsOnDOM(player1, player2) {
             `
 }
 
-function naruAttack(target) {
-    naruto.attack(target)
-    //    setTimeout(if(naruto.charChakra < 100) naruto.charChakra += 10, 500)
-    //    setTimeout(if(target.charChakra < 100) target.charChakra += 10, 500)
-}
+function naruAttack(target) { naruto.attack(target) }
 function naruClone(target) { naruto.clone(target) }
 function naruRasengan(target) { naruto.rasengan(target) }
 function naru9Tails(target) { naruto.nineTails(target) }
@@ -305,16 +342,50 @@ next.addEventListener("click", () => changeBg("next"))
 previous.addEventListener("click", () => changeBg("previous"))
 select.addEventListener("click", selectBackground)
 
-narutoAttack.addEventListener("click", function () { naruAttack(sasuke) })
-narutoClone.addEventListener("click", function () { naruClone(sasuke) })
-narutoRasengan.addEventListener("click", function () { naruRasengan(sasuke) })
-narutoTails.addEventListener("click", function () { naru9Tails(sasuke) })
-sasukeAttack.addEventListener("click", function () { sasuAttack(naruto) })
-sasukeFire.addEventListener("click", function () { sasuFire(naruto) })
-sasukeChidori.addEventListener("click", function () { sasuChidori(naruto) })
-sasukeSusanoo.addEventListener("click", function () { sasuSusanoo(naruto) })
+narutoAttack.addEventListener("click", function () {
+    naruAttack(sasuke)
+    turn *= -1
+    stopTurn()
+})
+narutoClone.addEventListener("click", function () {
+    naruClone(sasuke)
+    turn *= -1
+    stopTurn()
+})
+narutoRasengan.addEventListener("click", function () {
+    naruRasengan(sasuke)
+    turn *= -1
+    stopTurn()
+})
+narutoTails.addEventListener("click", function () {
+    naru9Tails(sasuke)
+    turn *= -1
+    stopTurn()
+})
+sasukeAttack.addEventListener("click", function () {
+    sasuAttack(naruto)
+    turn *= -1
+    stopTurn()
+})
+sasukeFire.addEventListener("click", function () {
+    sasuFire(naruto)
+    turn *= -1
+    stopTurn()
+})
+sasukeChidori.addEventListener("click", function () {
+    sasuChidori(naruto)
+    turn *= -1
+    stopTurn()
+})
+sasukeSusanoo.addEventListener("click", function () {
+    sasuSusanoo(naruto)
+    turn *= -1
+    stopTurn()
+})
 
 playAgain.addEventListener("click", function () {
     renderReset(naruto, sasuke)
+    chooseTurn()
+    console.log(turn)
     modal.classList.remove("open")
 })
