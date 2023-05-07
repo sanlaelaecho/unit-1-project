@@ -24,12 +24,14 @@ const select = document.querySelector(".carousel .select")
 const modalNoti = document.querySelector(".modal-noti")
 const modal = document.querySelector(".modal-game-over")
 
+const narutoAvatar = document.querySelector(".naruto-avatar img")
 const narutoBtns = document.querySelectorAll(".naruto-buttons button")
 const narutoAttack = document.querySelector(".naruto-attack")
 const narutoClone = document.querySelector(".naruto-clone")
 const narutoRasengan = document.querySelector(".naruto-rasengan")
 const narutoTails = document.querySelector(".naruto-9Tail")
 
+const sasukeAvatar = document.querySelector(".sasuke-avatar img")
 const sasukeBtns = document.querySelectorAll(".sasuke-buttons button")
 const sasukeAttack = document.querySelector(".sasuke-attack")
 const sasukeFire = document.querySelector(".sasuke-fire")
@@ -52,6 +54,11 @@ class Avatar {
 
     attack(target) {
         if (this.charChakra >= 5) {
+            if(turn === 1) {
+                narutoAvatar.setAttribute("src",this.image.narutoFight)
+            } else {
+                sasukeAvatar.setAttribute("src",this.image.sasukeFight)
+            }
             const damage = Math.floor(Math.random() * 10) + 1
             target.charHealth -= damage
             this.charChakra -= 5
@@ -74,20 +81,24 @@ class narutoClass extends Avatar {
     constructor() {
         super()
         this.image = {
-            narutoImgSolo: "https://p7.hiclipart.com/preview/171/107/717/naruto-ultimate-ninja-3-naruto-shippuden-ultimate-ninja-storm-2-naruto-shippuden-ultimate-ninja-storm-generations-naruto-ultimate-ninja-storm-naruto-uzumaki-naruto-png-picture-thumbnail.jpg",
-            narutoImgClone: "https://www.vhv.rs/dpng/d/406-4069972_naruto-png-image-file-naruto-doing-shadow-clone.png",
-            narutoImgRasengan: "https://p7.hiclipart.com/preview/462/369/315/5bbc3c2eef4d5-thumbnail.jpg",
-            narutoImg9Tail: "https://e7.pngegg.com/pngimages/766/820/png-clipart-naruto-uzumaki-nine-tailed-fox-kurama-tailed-beasts-naruto-giraffe-cartoon.png"
+            narutoImgSolo: "https://i.imgur.com/lW04Z6n.png",
+            narutoFight: "https://i.imgur.com/JIqI59s.png",
+            narutoImgClone: "https://i.imgur.com/N1RqSgK.png",
+            narutoImgRasengan: "https://i.imgur.com/DOv8zJG.png",
+            narutoImg9Tail: "https://i.imgur.com/pluZtzL.png"
         }
     }
 
-
-    evolveNaruto() {
-
+    birth() {
+        narutoAvatar.setAttribute("src",this.image.narutoImgSolo)
+        const shadow = document.createElement('div')
+        shadow.classList.add("shadow")
+        narutoAvatar.appendChild(shadow)
     }
 
     clone(target) {
         if (this.charChakra >= 10) {
+            narutoAvatar.setAttribute("src",this.image.narutoImgClone)
             const damage = Math.floor(Math.random() * 6) + 10
             target.charHealth -= damage
             this.charChakra -= 10
@@ -106,6 +117,7 @@ class narutoClass extends Avatar {
 
     rasengan(target) {
         if (this.charChakra >= 40) {
+            narutoAvatar.setAttribute("src",this.image.narutoImgRasengan)
             const damage = Math.floor(Math.random() * 6) + 25
             target.charHealth -= damage
             this.charChakra -= 40
@@ -123,6 +135,7 @@ class narutoClass extends Avatar {
 
     nineTails(target) {
         if (this.charChakra >= 70) {
+            narutoAvatar.setAttribute("src",this.image.narutoImg9Tail)
             const damage = Math.floor(Math.random() * 11) + 50
             target.charHealth -= damage
             this.charChakra -= 70
@@ -143,15 +156,24 @@ class sasukeClass extends Avatar {
     constructor() {
         super()
         this.image = {
-            sasukeImgSolo: "https://e7.pngegg.com/pngimages/571/918/png-clipart-sasuke-uchiha-naruto-uzumaki-shikamaru-nara-naruto-shippuden-ultimate-ninja-storm-4-itachi-uchiha-naruto-purple-black-hair.png",
-            sasukeImgFire: "https://www.pngitem.com/pimgs/m/407-4072625_sasuke-shippuden-fire-ball-jutsu-hd-png-download.png",
-            sasukeImgChidori: "https://e7.pngegg.com/pngimages/425/854/png-clipart-sasuke-uchiha-itachi-uchiha-chidori-anime-anime-photography-computer-wallpaper.png",
-            sasukeImgSusanoo: "https://e7.pngegg.com/pngimages/1013/267/png-clipart-sasuke-uchiha-itachi-uchiha-naruto-uchiha-clan-susanoo-no-mikoto-skeleton-watching-tv.png"
+            sasukeImgSolo: "https://i.imgur.com/X5eoTol.png",
+            sasukeFight: "https://i.imgur.com/DmEIp5U.png",
+            sasukeImgFire: "https://i.imgur.com/0Gx42jX.png",
+            sasukeImgChidori: "https://i.imgur.com/omg1Cyd.png",
+            sasukeImgSusanoo: "https://i.imgur.com/mTpuBNc.png"
         }
+    }
+
+    birth() {
+        sasukeAvatar.setAttribute("src",this.image.sasukeImgSolo)
+        const shadow = document.createElement('div')
+        shadow.classList.add("shadow")
+        sasukeAvatar.appendChild(shadow)
     }
 
     fireball(target) {
         if (this.charChakra >= 10) {
+            sasukeAvatar.setAttribute("src",this.image.sasukeImgFire)
             const damage = Math.floor(Math.random() * 6) + 10
             target.charHealth -= damage
             this.charChakra -= 10
@@ -169,6 +191,7 @@ class sasukeClass extends Avatar {
 
     chidori(target) {
         if (this.charChakra >= 40) {
+            sasukeAvatar.setAttribute("src",this.image.sasukeImgChidori)
             const damage = Math.floor(Math.random() * 6) + 25
             target.charHealth -= damage
             this.charChakra -= 40
@@ -186,6 +209,7 @@ class sasukeClass extends Avatar {
 
     susanoo(target) {
         if (this.charChakra >= 70) {
+            sasukeAvatar.setAttribute("src",this.image.sasukeImgSusanoo)
             const damage = Math.floor(Math.random() * 11) + 50
             target.charHealth -= damage
             this.charChakra -= 70
@@ -296,6 +320,8 @@ function selectBackground() {
     stopRecovery = recoverChakra(naruto, sasuke)
     chooseTurn()
     turnBasedBtns()
+    naruto.birth()
+    sasuke.birth()
 }
 
 function recoverChakra(player1, player2) {

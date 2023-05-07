@@ -130,6 +130,7 @@ CUSTOM SEIR STYLES
 }
 
 .modal-noti.open {
+    display: block;
     visibility: visible;
     opacity: 1;
 }
@@ -153,6 +154,7 @@ CUSTOM SEIR STYLES
 }
 
 .modal-game-over.open {
+    display: block;
     visibility: visible;
     opacity: 1;
 }
@@ -214,9 +216,73 @@ button:hover {
 }
 
 /* ===============================
+AVATAR
+=============================== */
+.player-avatars img {
+    max-height: 60vh;
+}
+
+.naruto-avatar, .sasuke-avatar {
+    position: relative;
+}
+
+.naruto-avatar img {
+    animation: ninja 1s ease infinite alternate;
+}
+
+.sasuke-avatar img {
+    animation: swish 1s ease-in-out infinite alternate;
+}
+
+.shadow {
+    width: 250px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    animation: swishShadow 1s ease-in-out infinite alternate;
+}
+
+/* ===============================
+KEYFRAMES
+=============================== */
+@keyframes swish {
+    from{
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50px);
+    }
+}
+
+@keyframes ninja {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-50px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes swishShadow {
+    from{
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50px);
+    }
+}
+
+/* ===============================
 Layout STYLES
 =============================== */
-
+.general-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
 
 .flex-container {
     display: flex;
