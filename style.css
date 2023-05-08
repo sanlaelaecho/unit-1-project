@@ -133,6 +133,7 @@ CUSTOM SEIR STYLES
     display: block;
     visibility: visible;
     opacity: 1;
+    z-index: 9999;
 }
 
 .modal-game-over {
@@ -157,6 +158,7 @@ CUSTOM SEIR STYLES
     display: block;
     visibility: visible;
     opacity: 1;
+    z-index: 9999;
 }
 
 button:hover {
@@ -222,15 +224,13 @@ AVATAR
     max-height: 60vh;
 }
 
-.naruto-avatar, .sasuke-avatar {
-    position: relative;
-}
-
 .naruto-avatar img {
+    position: relative;
     animation: ninja 1s ease infinite alternate;
 }
 
 .sasuke-avatar img {
+    position: relative;
     animation: swish 1s ease-in-out infinite alternate;
 }
 
@@ -241,6 +241,27 @@ AVATAR
     background-color: rgba(0, 0, 0, 0.3);
     animation: swishShadow 1s ease-in-out infinite alternate;
 }
+
+.blue-ball {
+    position: absolute;
+    top: 300px;
+    left: 350px;
+    z-index: 2;
+    opacity: 0;
+    width: 70px;
+    animation: grow 3s ease-in infinite forwards;
+}
+
+.fire-ball {
+    position: absolute;
+    top: 250px;
+    left: 600px;
+    z-index: 2;
+    opacity: 0;
+    height: 50vh;
+    animation: fade-in 3s ease-in-out infinite forwards;
+}
+
 
 /* ===============================
 KEYFRAMES
@@ -272,6 +293,28 @@ KEYFRAMES
     }
     to {
         transform: translateX(-50px);
+    }
+}
+
+@keyframes grow {
+    from {
+        opacity: 0;
+        transform: scale(1,1) translateX(-10px);
+    }
+    to {
+        opacity: 100;
+        transform: scale(3,3) translateX(200px);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-10px);
     }
 }
 
