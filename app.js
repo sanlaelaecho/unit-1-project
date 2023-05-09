@@ -30,6 +30,7 @@ const narutoAttack = document.querySelector(".naruto-attack")
 const narutoClone = document.querySelector(".naruto-clone")
 const narutoRasengan = document.querySelector(".naruto-rasengan")
 const narutoTails = document.querySelector(".naruto-9Tail")
+const narutoSpell = document.querySelector(".blue-ball")
 
 const sasukeAvatar = document.querySelector(".sasuke-avatar img")
 const sasukeBtns = document.querySelectorAll(".sasuke-buttons button")
@@ -37,6 +38,7 @@ const sasukeAttack = document.querySelector(".sasuke-attack")
 const sasukeFire = document.querySelector(".sasuke-fire")
 const sasukeChidori = document.querySelector(".sasuke-chidori")
 const sasukeSusanoo = document.querySelector(".sasuke-susanoo")
+const sasukeSpell = document.querySelector(".fire-ball")
 
 const h3 = document.querySelector("#sasuWin")
 const h2 = document.querySelector("#naruWin")
@@ -118,6 +120,7 @@ class narutoClass extends Avatar {
     rasengan(target) {
         if (this.charChakra >= 40) {
             narutoAvatar.setAttribute("src",this.image.narutoImgRasengan)
+            narutoSpell.setAttribute("src",narutoSpellAnimations[0])
             const damage = Math.floor(Math.random() * 6) + 25
             target.charHealth -= damage
             this.charChakra -= 40
@@ -174,6 +177,7 @@ class sasukeClass extends Avatar {
     fireball(target) {
         if (this.charChakra >= 10) {
             sasukeAvatar.setAttribute("src",this.image.sasukeImgFire)
+            sasukeSpell.setAttribute("src",sasukeSpellAnimations[0])
             const damage = Math.floor(Math.random() * 6) + 10
             target.charHealth -= damage
             this.charChakra -= 10
@@ -248,6 +252,14 @@ let currentBackground = 0
 let stopRecovery
 
 let turn
+
+const narutoSpellAnimations = [
+    "https://i.imgur.com/TMmbIhp.png"
+]
+
+const sasukeSpellAnimations = [
+    "https://i.imgur.com/Uwt5Btj.png"
+]
 
 /* ======================
 PLAYERS ALTERNATING TURNS
