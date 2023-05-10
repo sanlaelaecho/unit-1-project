@@ -32,13 +32,16 @@ const narutoRasengan = document.querySelector(".naruto-rasengan")
 const narutoTails = document.querySelector(".naruto-9Tail")
 const narutoSpell = document.querySelector(".blue-ball")
 
-const sasukeAvatar = document.querySelector(".sasuke-avatar img")
+const sasukeAvatar = document.querySelector(".sasuke-avatar")
+const sasukeLargeAvatar = document.querySelector(".susanoo-large")
 const sasukeBtns = document.querySelectorAll(".sasuke-buttons button")
 const sasukeAttack = document.querySelector(".sasuke-attack")
 const sasukeFire = document.querySelector(".sasuke-fire")
 const sasukeChidori = document.querySelector(".sasuke-chidori")
 const sasukeSusanoo = document.querySelector(".sasuke-susanoo")
+const sasukeShurikenSpell = document.querySelector(".shuriken")
 const sasukeSpell = document.querySelector(".fire-ball")
+const sasukeSwordSpell = document.querySelector(".sword")
 
 const h3 = document.querySelector("#sasuWin")
 const h2 = document.querySelector("#naruWin")
@@ -58,8 +61,13 @@ class Avatar {
         if (this.charChakra >= 5) {
             if(turn === 1) {
                 narutoAvatar.setAttribute("src",this.image.narutoFight)
+                narutoSpell.setAttribute("src",narutoSpellAnimations[0])
             } else {
                 sasukeAvatar.setAttribute("src",this.image.sasukeFight)
+                sasukeLargeAvatar.setAttribute("src", "")
+                sasukeShurikenSpell.setAttribute("src",sasukeSpellAnimations[0])
+                sasukeSpell.setAttribute("src", "")
+                sasukeSwordSpell.setAttribute("src", "")
             }
             const damage = Math.floor(Math.random() * 10) + 1
             target.charHealth -= damage
@@ -101,6 +109,7 @@ class narutoClass extends Avatar {
     clone(target) {
         if (this.charChakra >= 10) {
             narutoAvatar.setAttribute("src",this.image.narutoImgClone)
+            narutoSpell.setAttribute("src",narutoSpellAnimations[0])
             const damage = Math.floor(Math.random() * 6) + 10
             target.charHealth -= damage
             this.charChakra -= 10
@@ -120,7 +129,7 @@ class narutoClass extends Avatar {
     rasengan(target) {
         if (this.charChakra >= 40) {
             narutoAvatar.setAttribute("src",this.image.narutoImgRasengan)
-            narutoSpell.setAttribute("src",narutoSpellAnimations[0])
+            narutoSpell.setAttribute("src",narutoSpellAnimations[1])
             const damage = Math.floor(Math.random() * 6) + 25
             target.charHealth -= damage
             this.charChakra -= 40
@@ -139,6 +148,7 @@ class narutoClass extends Avatar {
     nineTails(target) {
         if (this.charChakra >= 70) {
             narutoAvatar.setAttribute("src",this.image.narutoImg9Tail)
+            narutoSpell.setAttribute("src",narutoSpellAnimations[2])
             const damage = Math.floor(Math.random() * 11) + 50
             target.charHealth -= damage
             this.charChakra -= 70
@@ -169,6 +179,7 @@ class sasukeClass extends Avatar {
 
     birth() {
         sasukeAvatar.setAttribute("src",this.image.sasukeImgSolo)
+        sasukeLargeAvatar.setAttribute("src", "")
         const shadow = document.createElement('div')
         shadow.classList.add("shadow")
         sasukeAvatar.appendChild(shadow)
@@ -177,7 +188,10 @@ class sasukeClass extends Avatar {
     fireball(target) {
         if (this.charChakra >= 10) {
             sasukeAvatar.setAttribute("src",this.image.sasukeImgFire)
-            sasukeSpell.setAttribute("src",sasukeSpellAnimations[0])
+            sasukeLargeAvatar.setAttribute("src", "")
+            sasukeSpell.setAttribute("src",sasukeSpellAnimations[1])
+            sasukeShurikenSpell.setAttribute("src", "")
+            sasukeSwordSpell.setAttribute("src", "")
             const damage = Math.floor(Math.random() * 6) + 10
             target.charHealth -= damage
             this.charChakra -= 10
@@ -196,6 +210,10 @@ class sasukeClass extends Avatar {
     chidori(target) {
         if (this.charChakra >= 40) {
             sasukeAvatar.setAttribute("src",this.image.sasukeImgChidori)
+            sasukeLargeAvatar.setAttribute("src", "")
+            sasukeSpell.setAttribute("src",sasukeSpellAnimations[2])
+            sasukeShurikenSpell.setAttribute("src", "")
+            sasukeSwordSpell.setAttribute("src", "")
             const damage = Math.floor(Math.random() * 6) + 25
             target.charHealth -= damage
             this.charChakra -= 40
@@ -213,7 +231,11 @@ class sasukeClass extends Avatar {
 
     susanoo(target) {
         if (this.charChakra >= 70) {
-            sasukeAvatar.setAttribute("src",this.image.sasukeImgSusanoo)
+            sasukeAvatar.setAttribute("src", "")
+            sasukeLargeAvatar.setAttribute("src",this.image.sasukeImgSusanoo)
+            sasukeSwordSpell.setAttribute("src",sasukeSpellAnimations[3])
+            sasukeSpell.setAttribute("src", "")
+            sasukeShurikenSpell.setAttribute("src", "")
             const damage = Math.floor(Math.random() * 11) + 50
             target.charHealth -= damage
             this.charChakra -= 70
@@ -254,11 +276,16 @@ let stopRecovery
 let turn
 
 const narutoSpellAnimations = [
-    "https://i.imgur.com/TMmbIhp.png"
+    "https://i.imgur.com/t7ZQz0w.png",
+    "https://i.imgur.com/TMmbIhp.png",
+    "https://i.imgur.com/Fn0GoMm.png"
 ]
 
 const sasukeSpellAnimations = [
-    "https://i.imgur.com/Uwt5Btj.png"
+    "https://i.imgur.com/SoIWlml.png",
+    "https://i.imgur.com/Uwt5Btj.png",
+    "https://i.imgur.com/bz37YJT.png",
+    "https://i.imgur.com/2X8kK1l.png"
 ]
 
 /* ======================

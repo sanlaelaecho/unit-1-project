@@ -45,6 +45,7 @@ CUSTOM SEIR STYLES
     font-family: 'Ninja Naruto';
     font-size: 15px;
     color: white;
+    z-index: 3;
     -webkit-text-stroke: 1.5px;
     -webkit-text-stroke-color: black;
 }
@@ -162,11 +163,13 @@ CUSTOM SEIR STYLES
 }
 
 button:hover {
+    z-index: 10;
     transform: scale(0.95);
     transition: transform 150ms ease-in;
 }
 
 .naruto-buttons button {
+    z-index: 10;
     background-color: orange;
     border: none;
     border-radius: 10px;
@@ -182,6 +185,7 @@ button:hover {
 }
 
 .sasuke-buttons button {
+    z-index: 10;
     background-color: navy;
     border: none;
     border-radius: 10px;
@@ -220,17 +224,25 @@ button:hover {
 /* ===============================
 AVATAR
 =============================== */
-.player-avatars img {
-    max-height: 60vh;
-}
 
 .naruto-avatar img {
     position: relative;
+    height: 60vh;
     animation: ninja 1s ease infinite alternate;
 }
 
-.sasuke-avatar img {
+.sasuke-avatar {
     position: relative;
+    height: 60vh;
+    animation: swish 1s ease-in-out infinite alternate;
+}
+
+.susanoo-large {
+    position: fixed;
+    top: 100px;
+    left: 1200px;
+    z-index: 0;
+    height: 80vh;
     animation: swish 1s ease-in-out infinite alternate;
 }
 
@@ -238,28 +250,48 @@ AVATAR
     width: 250px;
     height: 50px;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.3);
-    animation: swishShadow 1s ease-in-out infinite alternate;
+    background-color: rgba(255, 255, 255, 0.62);
+    animation: swish 1s ease-in-out infinite alternate;
 }
 
 .blue-ball {
     position: absolute;
-    top: 300px;
-    left: 350px;
+    top: 330px;
+    left: 450px;
     z-index: 2;
     opacity: 0;
     width: 70px;
     animation: grow 3s ease-in infinite forwards;
 }
 
-.fire-ball {
+.shuriken {
     position: absolute;
-    top: 250px;
-    left: 600px;
+    top: 350px;
+    left: 980px;
     z-index: 2;
     opacity: 0;
-    height: 50vh;
+    height: 50px;
+    animation: throw 2s ease-in-out infinite forwards;
+}
+
+.fire-ball {
+    position: absolute;
+    top: 150px;
+    left: 650px;
+    z-index: 2;
+    opacity: 0;
+    height: 80vh;
     animation: fade-in 3s ease-in-out infinite forwards;
+}
+
+.sword {
+    position: absolute;
+    top: 350px;
+    left: 980px;
+    z-index: 2;
+    opacity: 0;
+    height: 150px;
+    animation: throw 2s ease-in-out infinite forwards;
 }
 
 
@@ -303,7 +335,18 @@ KEYFRAMES
     }
     to {
         opacity: 100;
-        transform: scale(3,3) translateX(200px);
+        transform: scale(3,3) translateX(350px);
+    }
+}
+
+@keyframes throw {
+    from {
+        opacity: 0;
+        transform: translateX(0px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-600px);
     }
 }
 
