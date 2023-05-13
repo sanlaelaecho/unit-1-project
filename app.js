@@ -1,17 +1,4 @@
 /* ======================
-BGM
-========================= 
-Need to figure out how to link online audio
-
-const backgroundMusic = document.getElementById("background-music")
-backgroundMusic.play()
-//pause audio when user navigates away from page
-window.onbeforeunload = function() {
-    backgroundMusic.pause()
-}
-*/
-
-/* ======================
 CACHED DOM NODES
 ========================= */
 
@@ -59,13 +46,13 @@ class Avatar {
 
     attack(target) {
         if (this.charChakra >= 5) {
-            if(turn === 1) {
-                narutoAvatar.setAttribute("src",this.image.narutoFight)
-                narutoSpell.setAttribute("src",narutoSpellAnimations[0])
+            if (turn === 1) {
+                narutoAvatar.setAttribute("src", this.image.narutoFight)
+                narutoSpell.setAttribute("src", narutoSpellAnimations[0])
             } else {
-                sasukeAvatar.setAttribute("src",this.image.sasukeFight)
+                sasukeAvatar.setAttribute("src", this.image.sasukeFight)
                 sasukeLargeAvatar.setAttribute("src", "")
-                sasukeShurikenSpell.setAttribute("src",sasukeSpellAnimations[0])
+                sasukeShurikenSpell.setAttribute("src", sasukeSpellAnimations[0])
                 sasukeSpell.setAttribute("src", "")
                 sasukeSwordSpell.setAttribute("src", "")
             }
@@ -100,7 +87,7 @@ class narutoClass extends Avatar {
     }
 
     birth() {
-        narutoAvatar.setAttribute("src",this.image.narutoImgSolo)
+        narutoAvatar.setAttribute("src", this.image.narutoImgSolo)
         const shadow = document.createElement('div')
         shadow.classList.add("shadow")
         narutoAvatar.appendChild(shadow)
@@ -108,8 +95,8 @@ class narutoClass extends Avatar {
 
     clone(target) {
         if (this.charChakra >= 10) {
-            narutoAvatar.setAttribute("src",this.image.narutoImgClone)
-            narutoSpell.setAttribute("src",narutoSpellAnimations[0])
+            narutoAvatar.setAttribute("src", this.image.narutoImgClone)
+            narutoSpell.setAttribute("src", narutoSpellAnimations[0])
             const damage = Math.floor(Math.random() * 6) + 10
             target.charHealth -= damage
             this.charChakra -= 10
@@ -128,8 +115,8 @@ class narutoClass extends Avatar {
 
     rasengan(target) {
         if (this.charChakra >= 40) {
-            narutoAvatar.setAttribute("src",this.image.narutoImgRasengan)
-            narutoSpell.setAttribute("src",narutoSpellAnimations[1])
+            narutoAvatar.setAttribute("src", this.image.narutoImgRasengan)
+            narutoSpell.setAttribute("src", narutoSpellAnimations[1])
             const damage = Math.floor(Math.random() * 6) + 25
             target.charHealth -= damage
             this.charChakra -= 40
@@ -147,8 +134,8 @@ class narutoClass extends Avatar {
 
     nineTails(target) {
         if (this.charChakra >= 70) {
-            narutoAvatar.setAttribute("src",this.image.narutoImg9Tail)
-            narutoSpell.setAttribute("src",narutoSpellAnimations[2])
+            narutoAvatar.setAttribute("src", this.image.narutoImg9Tail)
+            narutoSpell.setAttribute("src", narutoSpellAnimations[2])
             const damage = Math.floor(Math.random() * 11) + 50
             target.charHealth -= damage
             this.charChakra -= 70
@@ -178,7 +165,7 @@ class sasukeClass extends Avatar {
     }
 
     birth() {
-        sasukeAvatar.setAttribute("src",this.image.sasukeImgSolo)
+        sasukeAvatar.setAttribute("src", this.image.sasukeImgSolo)
         sasukeLargeAvatar.setAttribute("src", "")
         const shadow = document.createElement('div')
         shadow.classList.add("shadow")
@@ -187,9 +174,9 @@ class sasukeClass extends Avatar {
 
     fireball(target) {
         if (this.charChakra >= 10) {
-            sasukeAvatar.setAttribute("src",this.image.sasukeImgFire)
+            sasukeAvatar.setAttribute("src", this.image.sasukeImgFire)
             sasukeLargeAvatar.setAttribute("src", "")
-            sasukeSpell.setAttribute("src",sasukeSpellAnimations[1])
+            sasukeSpell.setAttribute("src", sasukeSpellAnimations[1])
             sasukeShurikenSpell.setAttribute("src", "")
             sasukeSwordSpell.setAttribute("src", "")
             const damage = Math.floor(Math.random() * 6) + 10
@@ -209,9 +196,9 @@ class sasukeClass extends Avatar {
 
     chidori(target) {
         if (this.charChakra >= 40) {
-            sasukeAvatar.setAttribute("src",this.image.sasukeImgChidori)
+            sasukeAvatar.setAttribute("src", this.image.sasukeImgChidori)
             sasukeLargeAvatar.setAttribute("src", "")
-            sasukeSpell.setAttribute("src",sasukeSpellAnimations[2])
+            sasukeSpell.setAttribute("src", sasukeSpellAnimations[2])
             sasukeShurikenSpell.setAttribute("src", "")
             sasukeSwordSpell.setAttribute("src", "")
             const damage = Math.floor(Math.random() * 6) + 25
@@ -232,8 +219,8 @@ class sasukeClass extends Avatar {
     susanoo(target) {
         if (this.charChakra >= 70) {
             sasukeAvatar.setAttribute("src", "")
-            sasukeLargeAvatar.setAttribute("src",this.image.sasukeImgSusanoo)
-            sasukeSwordSpell.setAttribute("src",sasukeSpellAnimations[3])
+            sasukeLargeAvatar.setAttribute("src", this.image.sasukeImgSusanoo)
+            sasukeSwordSpell.setAttribute("src", sasukeSpellAnimations[3])
             sasukeSpell.setAttribute("src", "")
             sasukeShurikenSpell.setAttribute("src", "")
             const damage = Math.floor(Math.random() * 11) + 50
@@ -432,6 +419,7 @@ function sasuSusanoo(target) { sasuke.susanoo(target) }
 /* =============================
 EVENT LISTENERS
 ============================= */
+body.addEventListener("hover", () => onYouTubeIframeAPIReady())
 
 setTimeout(openCarousel, 500)
 next.addEventListener("click", () => changeBg("next"))
