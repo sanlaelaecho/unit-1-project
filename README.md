@@ -20,12 +20,20 @@ Now feel free to replay!
 
 ## Summarized Code Logic
 - Carousel flips through array of different images.
-
+- Naruto or Sasuke's turn is randomized with Math.floor.random.
+- Each player's turns are alternated and their buttons disabled if not their turn.
+- Once the game starts, Chakra recovers through interval.
+- Players' spells each have a range of math.random damage with stronger spells having a higher damage range than weaker spells.
+- If player tries to use spell that cost more than their Chakra, the modal pops up with notification.
+- Once either player's health goes to 0 or less, the other player wins.
+- Winning modal pops up with play again button and the chakra recovery stops.
+- Once play again is clicked, all health and chakra recovery starts over.
 
 ## Next Steps
 Add credit for the audio and the Naruto/Sasuke images.
 
 I plan to improve my CSS to better orient the avatars and their animations. Also, add shadows or clouds under the avatars so they look less like they're floating. Improve the animations.
+Probably add a dead Naruto or Sasuke at the end.
 
 I also plan to try to get my audio linked to a YouTube video's audio and not downloaded or uploaded on GitHub. Also, add audio every time either Naruto or Sasuke uses their attacks. For eg, if Naruto uses Rasengan, he screams Rasengan in audio.
 
