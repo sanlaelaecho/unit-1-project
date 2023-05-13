@@ -32,9 +32,17 @@ Now feel free to replay!
 ## Next Steps
 Add credit for the audio and the Naruto/Sasuke images.
 
-I plan to improve my CSS to better orient the avatars and their animations. Also, add shadows or clouds under the avatars so they look less like they're floating. Improve the animations.
+Slowly increase background volume.
+
+Add more avatars or players to be able to switch.
+
+Have health and chakra levels go down according to number but not get larger than the current bar when chakra recovers.
+
+Improve my CSS to better orient the avatars and their animations. Also, add shadows or clouds under the avatars so they look less like they're floating. Improve the animations.
 Probably add a dead Naruto or Sasuke at the end.
 
-I also plan to try to get my audio linked to a YouTube video's audio and not downloaded or uploaded on GitHub. Also, add audio every time either Naruto or Sasuke uses their attacks. For eg, if Naruto uses Rasengan, he screams Rasengan in audio.
+Try to get my audio linked to a YouTube video's audio and not downloaded or uploaded on GitHub. Also, add audio every time either Naruto or Sasuke uses their attacks. For eg, if Naruto uses Rasengan, he screams Rasengan in audio.
+
+If I get really advanced, have one player become AI.
 
 THANK YOU for playing my game!!!
