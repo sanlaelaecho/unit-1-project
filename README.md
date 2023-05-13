@@ -8,6 +8,11 @@ Html/CSS/JavaScript
 
 ## Game Description
 Welcome to the Naruto vs Sasuke 2 player game!
+
+This is a 2 player game based on the ninja anime, Naruto. In this anime, Naruto and Sasuke are "frienemies".
+The fight locations are some popular fighting scenes in the anime. 
+The attack spells are also some popular spells with transforming to 9 tails fox being the ultimate attack with highest range of damage from Naruto and summoning Susanoo being the ultimate attack for Sasuke as well.
+
 You can choose your location out of 6 famous fighting locations in Naruto.
 ![Background Fighting Locations](https://i.imgur.com/4yA848W.png)
 
